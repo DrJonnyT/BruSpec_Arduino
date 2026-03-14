@@ -1,4 +1,4 @@
-## Serial Command Reference
+## Serial API Reference
 
 ### Command and Response Prefixes
 
@@ -18,17 +18,21 @@ Below is a list of all valid commands, their parameters, and the expected Arduin
 ---
 
 ### `#SETTINGSLEDRGB <R> <G> <B>`
+
 Sets the LED colour settings (does not automatically turn them on).
 
 Parameters:  
+
 - `R`, `G`, `B` — values from 0–255
 
 **Expected response:**
+
 ```
 @LEDRGB = R G B
 ```
 
 Example:
+
 ```
 #SETTINGSLEDRGB 128 64 0
 ```
@@ -36,14 +40,17 @@ Example:
 ---
 
 ### `#LEDON`
+
 Turns the LEDs on using the current saved LED settings.
 
 **Expected response:**
+
 ```
 @LEDON
 ```
 
 Example:
+
 ```
 #LEDON
 ```
@@ -51,14 +58,17 @@ Example:
 ---
 
 ### `#LEDOFF`
+
 Turns the LEDs off.
 
 **Expected response:**
+
 ```
 @LEDOFF
 ```
 
 Example:
+
 ```
 #LEDOFF
 ```
@@ -66,6 +76,7 @@ Example:
 ---
 
 ### `#SETALL <R> <G> <B> <gainExt> <gainSca> <intTimeExt> <intTimeSca>`
+
 Sets LED colour, detector gains, and detector integration times in a single command, and turns the LEDs on.
 
 Valid gains:  
@@ -75,6 +86,7 @@ Valid integration times (ms):
 `24`, `50`, `60`, `120`, `240`, `480`, `600`
 
 **Expected responses (in this order):**
+
 ```
 @LEDSETTINGS = R G B
 @LEDON
@@ -83,16 +95,19 @@ Valid integration times (ms):
 ```
 
 If invalid gain values are used:
+
 ```
 @Invalid gain setting: X
 ```
 
 If invalid integration times are used:
+
 ```
 @Invalid integ time setting: X
 ```
 
 Example:
+
 ```
 #SETALL 100 20 200 16 4 120 240
 ```
@@ -100,14 +115,17 @@ Example:
 ---
 
 ### `#READEXT`
+
 Reads raw RGB values from the Extinction (Ext) sensor.
 
 **Expected response:**
+
 ```
 @EXT = r g b
 ```
 
 Example:
+
 ```
 #READEXT
 ```
@@ -115,14 +133,17 @@ Example:
 ---
 
 ### `#READSCA`
+
 Reads raw RGB values from the Scattering (Sca) sensor.
 
 **Expected response:**
+
 ```
 @SCA = r g b
 ```
 
 Example:
+
 ```
 #READSCA
 ```
@@ -130,14 +151,17 @@ Example:
 ---
 
 ### `#CHECKSERIAL`
+
 Checks that serial communication is functioning.
 
 **Expected response:**
+
 ```
 @SERIALOK
 ```
 
 Example:
+
 ```
 #CHECKSERIAL
 ```
@@ -145,17 +169,20 @@ Example:
 ---
 
 ### `#RESET`
+
 Performs a soft reset of the Arduino using the watchdog timer.
 
 **Expected response:**  
 No immediate response (device resets).  
 After reboot, you will see:
+
 ```
 @SETUPSTARTING
 @SETUPCOMPLETE
 ```
 
 Example:
+
 ```
 #RESET
 ```
